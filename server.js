@@ -2,7 +2,8 @@ const mongoose = require("mongoose")
 const Document = require("./Document")
 const express = require('express')
 var app = express();
-var http = require('http').Server(app);
+var http = require('http')
+var server = http.createServer(app);
 require('dotenv').config();
 
 mongoose.connect(process.env.DB, {
@@ -11,7 +12,7 @@ mongoose.connect(process.env.DB, {
   useFindAndModify: false,
   useCreateIndex: true,
 })
-var io = require('socket.io')(http,  { cors: { origin: '*' } });
+var io = require('socket.io')(server,  { cors: { origin: '*' } });
 
 const defaultValue = ""
 
