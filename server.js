@@ -12,6 +12,7 @@ mongoose.connect(process.env.DB, {
   useFindAndModify: false,
   useCreateIndex: true,
 })
+server.listen(3001)
 var io = require('socket.io')(server,  { cors: { origin: '*' } });
 
 const defaultValue = ""
