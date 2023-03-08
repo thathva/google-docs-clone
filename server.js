@@ -1,9 +1,5 @@
 const mongoose = require("mongoose")
 const Document = require("./Document")
-const express = require('express')
-var app = express();
-var http = require('http')
-var server = http.createServer(app);
 require('dotenv').config();
 
 mongoose.connect(process.env.DB, {
@@ -12,8 +8,13 @@ mongoose.connect(process.env.DB, {
   useFindAndModify: false,
   useCreateIndex: true,
 })
-server.listen(3001)
-var io = require('socket.io')(server,  { cors: { origin: '*' } });
+
+const io = require("socket.io")(3001, {
+  cors: {
+    origin: "lighthearted-frangipane-a56066.netlify.app/",
+    methods: ["GET", "POST"],
+  },
+})
 
 const defaultValue = ""
 
